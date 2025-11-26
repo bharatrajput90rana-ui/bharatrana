@@ -21,8 +21,12 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.1.2",
+    "mongoose": "^8.0.0",
+    "qrcode": "^1.5.3",
     "zod": "^3.25.76"
   },
   "devDependencies": {
