@@ -99,7 +99,7 @@ export default function Index() {
               </p>
             </Card>
             <Card className="p-6 bg-gradient-to-br from-secondary/10 to-secondary/5 border-secondary/20">
-              <FaceIcon className="w-12 h-12 text-secondary mb-4" />
+              <Smile className="w-12 h-12 text-secondary mb-4" />
               <h3 className="font-semibold text-foreground">Face Recognition</h3>
               <p className="text-sm text-foreground/60 mt-2">
                 Advanced ML-based identity verification
