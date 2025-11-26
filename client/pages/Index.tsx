@@ -8,7 +8,7 @@ import {
   BarChart3,
   QrCode,
   MapPin,
-  FaceIcon,
+  Smile,
   Clock,
   Shield,
 } from "lucide-react";
