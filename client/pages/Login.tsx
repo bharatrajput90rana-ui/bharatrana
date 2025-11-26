@@ -56,7 +56,9 @@ export default function Login() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">Username</label>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Username
+              </label>
               <Input
                 type="text"
                 placeholder="Enter your username"
@@ -68,7 +70,9 @@ export default function Login() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">Password</label>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Password
+              </label>
               <Input
                 type="password"
                 placeholder="Enter your password"
@@ -90,19 +94,27 @@ export default function Login() {
 
           {/* Demo Credentials */}
           <div className="mt-8 pt-8 border-t border-border/50">
-            <p className="text-sm font-medium text-foreground mb-4">Demo Credentials:</p>
+            <p className="text-sm font-medium text-foreground mb-4">
+              Demo Credentials:
+            </p>
             <div className="space-y-3">
               <div className="p-3 bg-background rounded border border-border/30">
                 <p className="text-xs text-foreground/60">Admin</p>
-                <p className="text-sm font-mono text-foreground">admin / admin123</p>
+                <p className="text-sm font-mono text-foreground">
+                  admin / admin123
+                </p>
               </div>
               <div className="p-3 bg-background rounded border border-border/30">
                 <p className="text-xs text-foreground/60">Teacher</p>
-                <p className="text-sm font-mono text-foreground">teacher1 / teacher123</p>
+                <p className="text-sm font-mono text-foreground">
+                  teacher1 / teacher123
+                </p>
               </div>
               <div className="p-3 bg-background rounded border border-border/30">
                 <p className="text-xs text-foreground/60">Student</p>
-                <p className="text-sm font-mono text-foreground">student1 / student123</p>
+                <p className="text-sm font-mono text-foreground">
+                  student1 / student123
+                </p>
               </div>
             </div>
           </div>

@@ -19,10 +19,17 @@ export default function NotFound() {
         </p>
 
         <div className="flex gap-4">
-          <Button onClick={() => navigate("/")} className="flex-1 bg-primary hover:bg-primary/90">
+          <Button
+            onClick={() => navigate("/")}
+            className="flex-1 bg-primary hover:bg-primary/90"
+          >
             Go Home
           </Button>
-          <Button onClick={() => navigate(-1)} variant="outline" className="flex-1">
+          <Button
+            onClick={() => navigate(-1)}
+            variant="outline"
+            className="flex-1"
+          >
             Go Back
           </Button>
         </div>

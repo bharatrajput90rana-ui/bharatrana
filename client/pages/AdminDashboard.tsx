@@ -66,7 +66,13 @@ export default function AdminDashboard() {
       });
 
       if (response.ok) {
-        setFormData({ username: "", email: "", password: "", firstName: "", lastName: "" });
+        setFormData({
+          username: "",
+          email: "",
+          password: "",
+          firstName: "",
+          lastName: "",
+        });
         setShowAddForm(false);
         fetchTeachers();
       } else {
@@ -103,8 +109,12 @@ export default function AdminDashboard() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Manage Teachers</h1>
-            <p className="text-foreground/60 mt-2">Create and manage teacher accounts</p>
+            <h1 className="text-3xl font-bold text-foreground">
+              Manage Teachers
+            </h1>
+            <p className="text-foreground/60 mt-2">
+              Create and manage teacher accounts
+            </p>
           </div>
           <Button
             onClick={() => setShowAddForm(!showAddForm)}
@@ -129,42 +139,60 @@ export default function AdminDashboard() {
         {/* Add Teacher Form */}
         {showAddForm && (
           <Card className="p-6 border-primary/30 bg-primary/5">
-            <h2 className="text-xl font-bold text-foreground mb-4">Add New Teacher</h2>
-            <form onSubmit={handleAddTeacher} className="grid md:grid-cols-2 gap-4">
+            <h2 className="text-xl font-bold text-foreground mb-4">
+              Add New Teacher
+            </h2>
+            <form
+              onSubmit={handleAddTeacher}
+              className="grid md:grid-cols-2 gap-4"
+            >
               <Input
                 placeholder="Username"
                 value={formData.username}
-                onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, username: e.target.value })
+                }
                 required
               />
               <Input
                 type="email"
                 placeholder="Email"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 required
               />
               <Input
                 placeholder="First Name"
                 value={formData.firstName}
-                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, firstName: e.target.value })
+                }
                 required
               />
               <Input
                 placeholder="Last Name"
                 value={formData.lastName}
-                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, lastName: e.target.value })
+                }
                 required
               />
               <Input
                 type="password"
                 placeholder="Password"
                 value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
                 required
               />
               <div className="flex gap-2 md:col-span-2">
-                <Button type="submit" className="flex-1 bg-primary hover:bg-primary/90">
+                <Button
+                  type="submit"
+                  className="flex-1 bg-primary hover:bg-primary/90"
+                >
                   Add Teacher
                 </Button>
                 <Button
@@ -191,13 +219,19 @@ export default function AdminDashboard() {
             <Card className="p-8 text-center">
               <Users className="w-12 h-12 text-foreground/20 mx-auto mb-4" />
               <p className="text-foreground/60 mb-4">No teachers yet</p>
-              <Button onClick={() => setShowAddForm(true)} className="bg-primary hover:bg-primary/90">
+              <Button
+                onClick={() => setShowAddForm(true)}
+                className="bg-primary hover:bg-primary/90"
+              >
                 Add First Teacher
               </Button>
             </Card>
           ) : (
             teachers.map((teacher) => (
-              <Card key={teacher._id} className="p-6 hover:shadow-md transition-shadow">
+              <Card
+                key={teacher._id}
+                className="p-6 hover:shadow-md transition-shadow"
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
                     <h3 className="font-bold text-foreground">

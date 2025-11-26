@@ -66,7 +66,7 @@ export default function QRScanner({ onScan, onCancel }: QRScannerProps) {
               0,
               0,
               canvasRef.current.width,
-              canvasRef.current.height
+              canvasRef.current.height,
             );
 
             // Mock QR code detection
@@ -119,7 +119,9 @@ export default function QRScanner({ onScan, onCancel }: QRScannerProps) {
           {scanned && (
             <div className="mb-4 p-3 bg-secondary/10 border border-secondary/20 rounded-lg flex gap-2">
               <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0" />
-              <p className="text-sm text-foreground">QR Code scanned successfully</p>
+              <p className="text-sm text-foreground">
+                QR Code scanned successfully
+              </p>
             </div>
           )}
 

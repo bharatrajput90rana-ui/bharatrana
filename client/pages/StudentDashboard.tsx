@@ -62,7 +62,9 @@ export default function StudentDashboard() {
         {/* Header */}
         <div>
           <h1 className="text-3xl font-bold text-foreground">My Classes</h1>
-          <p className="text-foreground/60 mt-2">Select a class to mark attendance</p>
+          <p className="text-foreground/60 mt-2">
+            Select a class to mark attendance
+          </p>
         </div>
 
         {/* Error Alert */}
@@ -86,17 +88,25 @@ export default function StudentDashboard() {
           ) : classes.length === 0 ? (
             <Card className="p-8 text-center">
               <CheckSquare className="w-12 h-12 text-foreground/20 mx-auto mb-4" />
-              <p className="text-foreground/60 mb-4">You are not enrolled in any classes yet</p>
+              <p className="text-foreground/60 mb-4">
+                You are not enrolled in any classes yet
+              </p>
             </Card>
           ) : (
             classes.map((classItem) => (
-              <Card key={classItem._id} className="p-6 hover:shadow-md transition-shadow">
+              <Card
+                key={classItem._id}
+                className="p-6 hover:shadow-md transition-shadow"
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-foreground">{classItem.name}</h3>
+                    <h3 className="text-xl font-bold text-foreground">
+                      {classItem.name}
+                    </h3>
                     <div className="mt-2 space-y-1 text-sm text-foreground/60">
                       <p>
-                        Teacher: {classItem.teacherId.firstName} {classItem.teacherId.lastName}
+                        Teacher: {classItem.teacherId.firstName}{" "}
+                        {classItem.teacherId.lastName}
                       </p>
                       {classItem.description && <p>{classItem.description}</p>}
                     </div>
@@ -116,15 +126,21 @@ export default function StudentDashboard() {
                 <div className="mt-4 pt-4 border-t border-border/50">
                   <div className="grid md:grid-cols-3 gap-4 text-xs text-foreground/60">
                     <div>
-                      <p className="text-foreground/60 font-medium">QR Code Required</p>
+                      <p className="text-foreground/60 font-medium">
+                        QR Code Required
+                      </p>
                       {classItem.qrCode ? "✓" : "Not set"}
                     </div>
                     <div>
-                      <p className="text-foreground/60 font-medium">GPS Required</p>
+                      <p className="text-foreground/60 font-medium">
+                        GPS Required
+                      </p>
                       {classItem.gpsLatitude ? "✓" : "Not set"}
                     </div>
                     <div>
-                      <p className="text-foreground/60 font-medium">Face Recognition Required</p>
+                      <p className="text-foreground/60 font-medium">
+                        Face Recognition Required
+                      </p>
                       Required
                     </div>
                   </div>
@@ -147,31 +163,49 @@ export default function StudentDashboard() {
 
               <div className="space-y-4 mb-6">
                 <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg">
-                  <p className="font-semibold text-foreground mb-2">Step 1: Scan QR Code</p>
+                  <p className="font-semibold text-foreground mb-2">
+                    Step 1: Scan QR Code
+                  </p>
                   <p className="text-sm text-foreground/60">
                     Use your camera to scan the QR code provided by your teacher
                   </p>
-                  <Button size="sm" className="mt-3 bg-primary hover:bg-primary/90" disabled>
+                  <Button
+                    size="sm"
+                    className="mt-3 bg-primary hover:bg-primary/90"
+                    disabled
+                  >
                     Open QR Scanner (coming soon)
                   </Button>
                 </div>
 
                 <div className="p-4 bg-secondary/10 border border-secondary/20 rounded-lg">
-                  <p className="font-semibold text-foreground mb-2">Step 2: Face Recognition</p>
+                  <p className="font-semibold text-foreground mb-2">
+                    Step 2: Face Recognition
+                  </p>
                   <p className="text-sm text-foreground/60">
                     Your face will be verified against your profile photo
                   </p>
-                  <Button size="sm" className="mt-3 bg-secondary hover:bg-secondary/90" disabled>
+                  <Button
+                    size="sm"
+                    className="mt-3 bg-secondary hover:bg-secondary/90"
+                    disabled
+                  >
                     Start Face Recognition (coming soon)
                   </Button>
                 </div>
 
                 <div className="p-4 bg-accent/10 border border-accent/20 rounded-lg">
-                  <p className="font-semibold text-foreground mb-2">Step 3: GPS Validation</p>
+                  <p className="font-semibold text-foreground mb-2">
+                    Step 3: GPS Validation
+                  </p>
                   <p className="text-sm text-foreground/60">
                     Your location will be verified to be within the class area
                   </p>
-                  <Button size="sm" className="mt-3 bg-accent hover:bg-accent/90" disabled>
+                  <Button
+                    size="sm"
+                    className="mt-3 bg-accent hover:bg-accent/90"
+                    disabled
+                  >
                     Enable GPS (coming soon)
                   </Button>
                 </div>

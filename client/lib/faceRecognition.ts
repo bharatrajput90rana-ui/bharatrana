@@ -52,7 +52,9 @@ export interface FaceDetectionResult {
 }
 
 // Detect face in image and get descriptor
-export async function detectFace(input: HTMLCanvasElement | HTMLVideoElement | HTMLImageElement): Promise<FaceDetectionResult | null> {
+export async function detectFace(
+  input: HTMLCanvasElement | HTMLVideoElement | HTMLImageElement,
+): Promise<FaceDetectionResult | null> {
   // This is a mock implementation
   // In production, you would use:
   // const detection = await faceapi.detectSingleFace(input)
@@ -66,7 +68,9 @@ export async function detectFace(input: HTMLCanvasElement | HTMLVideoElement | H
 }
 
 // Detect faces in image for liveness check
-export async function detectMultipleFaces(video: HTMLVideoElement): Promise<FaceDetectionResult[]> {
+export async function detectMultipleFaces(
+  video: HTMLVideoElement,
+): Promise<FaceDetectionResult[]> {
   // Mock implementation
   // const detections = await faceapi.detectAllFaces(video)
   //   .withFaceLandmarks()
@@ -77,7 +81,10 @@ export async function detectMultipleFaces(video: HTMLVideoElement): Promise<Face
 }
 
 // Calculate face similarity between two descriptors
-export function calculateFaceSimilarity(descriptor1: number[], descriptor2: number[]): number {
+export function calculateFaceSimilarity(
+  descriptor1: number[],
+  descriptor2: number[],
+): number {
   if (descriptor1.length !== descriptor2.length) {
     return 0;
   }
@@ -96,7 +103,9 @@ export function calculateFaceSimilarity(descriptor1: number[], descriptor2: numb
 }
 
 // Get descriptor from image data
-export async function getDescriptorFromImage(imageData: string | Canvas): Promise<number[] | null> {
+export async function getDescriptorFromImage(
+  imageData: string | Canvas,
+): Promise<number[] | null> {
   // Mock implementation
   // const img = new Image();
   // img.src = imageData;
@@ -108,7 +117,10 @@ export async function getDescriptorFromImage(imageData: string | Canvas): Promis
 }
 
 // Liveness detection - check if person is real (not a photo)
-export async function performLivenessCheck(video: HTMLVideoElement, duration: number = 2000): Promise<number> {
+export async function performLivenessCheck(
+  video: HTMLVideoElement,
+  duration: number = 2000,
+): Promise<number> {
   // Capture multiple frames and check for micro-movements
   // This is a simplified mock implementation
 
@@ -137,7 +149,8 @@ export async function performLivenessCheck(video: HTMLVideoElement, duration: nu
     for (let i = 1; i < frames.length; i++) {
       for (const expr of expressions) {
         const diff = Math.abs(
-          (frames[i].expressions as any)[expr] - (frames[i - 1].expressions as any)[expr]
+          (frames[i].expressions as any)[expr] -
+            (frames[i - 1].expressions as any)[expr],
         );
         variationScore += diff;
       }
@@ -155,7 +168,10 @@ export async function performLivenessCheck(video: HTMLVideoElement, duration: nu
 }
 
 // Blink detection for liveness
-export async function detectBlinks(video: HTMLVideoElement, duration: number = 3000): Promise<number> {
+export async function detectBlinks(
+  video: HTMLVideoElement,
+  duration: number = 3000,
+): Promise<number> {
   const frames: FaceDetectionResult[] = [];
   const frameInterval = 50;
   const frameCount = Math.floor(duration / frameInterval);
@@ -183,12 +199,15 @@ export function captureFaceImage(canvas: HTMLCanvasElement): string {
 export async function verifyFace(
   currentDescriptor: number[],
   storedDescriptor: number[],
-  threshold: number = 0.6
+  threshold: number = 0.6,
 ): Promise<{
   matched: boolean;
   confidence: number;
 }> {
-  const similarity = calculateFaceSimilarity(currentDescriptor, storedDescriptor);
+  const similarity = calculateFaceSimilarity(
+    currentDescriptor,
+    storedDescriptor,
+  );
 
   return {
     matched: similarity >= threshold,

@@ -83,7 +83,9 @@ export default function TeacherDashboard() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-foreground">My Classes</h1>
-            <p className="text-foreground/60 mt-2">Create and manage your classes</p>
+            <p className="text-foreground/60 mt-2">
+              Create and manage your classes
+            </p>
           </div>
           <Button
             onClick={() => setShowAddForm(!showAddForm)}
@@ -108,21 +110,30 @@ export default function TeacherDashboard() {
         {/* Add Class Form */}
         {showAddForm && (
           <Card className="p-6 border-primary/30 bg-primary/5">
-            <h2 className="text-xl font-bold text-foreground mb-4">Create New Class</h2>
+            <h2 className="text-xl font-bold text-foreground mb-4">
+              Create New Class
+            </h2>
             <form onSubmit={handleAddClass} className="space-y-4">
               <Input
                 placeholder="Class Name"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
                 required
               />
               <Input
                 placeholder="Description (Optional)"
                 value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, description: e.target.value })
+                }
               />
               <div className="flex gap-2">
-                <Button type="submit" className="flex-1 bg-primary hover:bg-primary/90">
+                <Button
+                  type="submit"
+                  className="flex-1 bg-primary hover:bg-primary/90"
+                >
                   Create Class
                 </Button>
                 <Button
@@ -149,18 +160,28 @@ export default function TeacherDashboard() {
             <Card className="p-8 text-center">
               <BookOpen className="w-12 h-12 text-foreground/20 mx-auto mb-4" />
               <p className="text-foreground/60 mb-4">No classes yet</p>
-              <Button onClick={() => setShowAddForm(true)} className="bg-primary hover:bg-primary/90">
+              <Button
+                onClick={() => setShowAddForm(true)}
+                className="bg-primary hover:bg-primary/90"
+              >
                 Create First Class
               </Button>
             </Card>
           ) : (
             classes.map((classItem) => (
-              <Card key={classItem._id} className="p-6 hover:shadow-md transition-shadow">
+              <Card
+                key={classItem._id}
+                className="p-6 hover:shadow-md transition-shadow"
+              >
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-xl font-bold text-foreground">{classItem.name}</h3>
+                    <h3 className="text-xl font-bold text-foreground">
+                      {classItem.name}
+                    </h3>
                     {classItem.description && (
-                      <p className="text-sm text-foreground/60 mt-1">{classItem.description}</p>
+                      <p className="text-sm text-foreground/60 mt-1">
+                        {classItem.description}
+                      </p>
                     )}
                   </div>
                   <div className="text-right">

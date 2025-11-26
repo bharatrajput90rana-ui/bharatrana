@@ -31,7 +31,7 @@ const faceDataSchema = new Schema<IFaceData>(
       default: null,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 faceDataSchema.index({ userId: 1 });

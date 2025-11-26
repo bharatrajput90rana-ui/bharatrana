@@ -16,7 +16,11 @@ interface FaceCaptureProps {
   mode?: "capture" | "verify"; // capture for profile setup, verify for attendance
 }
 
-export default function FaceCapture({ onCapture, onCancel, mode = "capture" }: FaceCaptureProps) {
+export default function FaceCapture({
+  onCapture,
+  onCancel,
+  mode = "capture",
+}: FaceCaptureProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [cameraActive, setCameraActive] = useState(false);
@@ -35,7 +39,7 @@ export default function FaceCapture({ onCapture, onCancel, mode = "capture" }: F
       const loaded = await initializeFaceDetection();
       if (!loaded) {
         setError(
-          "Face detection not available. Please try again or use a different browser."
+          "Face detection not available. Please try again or use a different browser.",
         );
       }
     } catch (err) {
@@ -60,7 +64,7 @@ export default function FaceCapture({ onCapture, onCancel, mode = "capture" }: F
         setInstruction(
           mode === "capture"
             ? "Position your face in the center and ensure good lighting"
-            : "Look at the camera for verification"
+            : "Look at the camera for verification",
         );
       }
     } catch (err) {
@@ -93,7 +97,7 @@ export default function FaceCapture({ onCapture, onCancel, mode = "capture" }: F
           0,
           0,
           canvasRef.current.width,
-          canvasRef.current.height
+          canvasRef.current.height,
         );
       }
 
@@ -180,12 +184,7 @@ export default function FaceCapture({ onCapture, onCancel, mode = "capture" }: F
             className="w-full rounded-lg mb-4 bg-black"
           />
 
-          <canvas
-            ref={canvasRef}
-            className="hidden"
-            width={640}
-            height={480}
-          />
+          <canvas ref={canvasRef} className="hidden" width={640} height={480} />
 
           {instruction && (
             <div className="mb-4 p-3 bg-primary/10 border border-primary/20 rounded-lg">
@@ -193,7 +192,9 @@ export default function FaceCapture({ onCapture, onCancel, mode = "capture" }: F
               {livenessScore > 0 && (
                 <div className="mt-2">
                   <div className="flex justify-between items-center mb-1">
-                    <span className="text-xs text-foreground/60">Liveness Score</span>
+                    <span className="text-xs text-foreground/60">
+                      Liveness Score
+                    </span>
                     <span className="text-sm font-semibold text-foreground">
                       {Math.round(livenessScore * 100)}%
                     </span>
@@ -212,7 +213,9 @@ export default function FaceCapture({ onCapture, onCancel, mode = "capture" }: F
           {faceDetected && (
             <div className="mb-4 p-3 bg-secondary/10 border border-secondary/20 rounded-lg flex gap-2">
               <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0" />
-              <p className="text-sm text-foreground">Face detected successfully</p>
+              <p className="text-sm text-foreground">
+                Face detected successfully
+              </p>
             </div>
           )}
 

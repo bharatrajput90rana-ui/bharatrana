@@ -26,7 +26,8 @@ export interface AuthResponse {
 // Register new user (admin creates teacher, teacher creates student)
 export const handleRegister: RequestHandler = async (req, res) => {
   try {
-    const { username, email, password, firstName, lastName, role, teacherId } = req.body;
+    const { username, email, password, firstName, lastName, role, teacherId } =
+      req.body;
 
     // Validation
     if (!username || !email || !password || !firstName || !lastName || !role) {
@@ -61,11 +62,9 @@ export const handleRegister: RequestHandler = async (req, res) => {
     await user.save();
 
     // Generate token
-    const token = jwt.sign(
-      { userId: user._id, role: user.role },
-      JWT_SECRET,
-      { expiresIn: "7d" }
-    );
+    const token = jwt.sign({ userId: user._id, role: user.role }, JWT_SECRET, {
+      expiresIn: "7d",
+    });
 
     res.status(201).json({
       success: true,
@@ -123,11 +122,9 @@ export const handleLogin: RequestHandler = async (req, res) => {
     }
 
     // Generate token
-    const token = jwt.sign(
-      { userId: user._id, role: user.role },
-      JWT_SECRET,
-      { expiresIn: "7d" }
-    );
+    const token = jwt.sign({ userId: user._id, role: user.role }, JWT_SECRET, {
+      expiresIn: "7d",
+    });
 
     res.json({
       success: true,

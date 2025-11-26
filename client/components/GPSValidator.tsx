@@ -54,7 +54,12 @@ export default function GPSValidator({
           setLocation(locationData);
 
           // Calculate distance between student and class location
-          const dist = calculateDistance(latitude, longitude, classLatitude, classLongitude);
+          const dist = calculateDistance(
+            latitude,
+            longitude,
+            classLatitude,
+            classLongitude,
+          );
           setDistance(dist);
 
           // Check if within acceptable range
@@ -63,14 +68,16 @@ export default function GPSValidator({
 
           if (!isMatched) {
             setError(
-              `You are ${dist.toFixed(1)}m away from the class location. Maximum allowed distance: ${classAccuracy}m`
+              `You are ${dist.toFixed(1)}m away from the class location. Maximum allowed distance: ${classAccuracy}m`,
             );
           }
         },
         (err) => {
           switch (err.code) {
             case err.PERMISSION_DENIED:
-              setError("Location permission denied. Please enable location access.");
+              setError(
+                "Location permission denied. Please enable location access.",
+              );
               break;
             case err.POSITION_UNAVAILABLE:
               setError("Location information is unavailable.");
@@ -86,7 +93,7 @@ export default function GPSValidator({
           enableHighAccuracy: true,
           timeout: 10000,
           maximumAge: 0,
-        }
+        },
       );
     } finally {
       setLoading(false);
@@ -98,7 +105,7 @@ export default function GPSValidator({
     lat1: number,
     lon1: number,
     lat2: number,
-    lon2: number
+    lon2: number,
   ): number => {
     const R = 6371000; // Earth's radius in meters
     const dLat = ((lat2 - lat1) * Math.PI) / 180;
@@ -132,7 +139,9 @@ export default function GPSValidator({
           </div>
           <div>
             <p className="text-foreground/60 font-medium">Allowed Range</p>
-            <p className="text-foreground font-mono text-xs mt-1">{classAccuracy}m radius</p>
+            <p className="text-foreground font-mono text-xs mt-1">
+              {classAccuracy}m radius
+            </p>
           </div>
         </div>
       </div>
@@ -140,7 +149,8 @@ export default function GPSValidator({
       {!location ? (
         <div className="text-center py-6">
           <p className="text-foreground/70 mb-4">
-            Click below to get your current location and verify you are in the class area
+            Click below to get your current location and verify you are in the
+            class area
           </p>
           <Button
             onClick={getLocation}
@@ -157,7 +167,8 @@ export default function GPSValidator({
               <div>
                 <p className="text-foreground/60">Your Location</p>
                 <p className="text-foreground font-mono text-xs mt-1">
-                  {location.latitude.toFixed(4)}, {location.longitude.toFixed(4)}
+                  {location.latitude.toFixed(4)},{" "}
+                  {location.longitude.toFixed(4)}
                 </p>
               </div>
               <div>
@@ -174,7 +185,9 @@ export default function GPSValidator({
               </div>
               <div>
                 <p className="text-foreground/60">Allowed</p>
-                <p className="text-foreground font-mono text-xs mt-1">{classAccuracy}m</p>
+                <p className="text-foreground font-mono text-xs mt-1">
+                  {classAccuracy}m
+                </p>
               </div>
             </div>
           </div>
@@ -184,15 +197,21 @@ export default function GPSValidator({
               <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
               <div>
                 <p className="font-medium text-foreground">Location Verified</p>
-                <p className="text-sm text-foreground/70">You are within the class area</p>
+                <p className="text-sm text-foreground/70">
+                  You are within the class area
+                </p>
               </div>
             </div>
           ) : (
             <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg flex gap-3">
               <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-medium text-destructive">Location Mismatch</p>
-                <p className="text-sm text-destructive/80">You are too far from the class</p>
+                <p className="font-medium text-destructive">
+                  Location Mismatch
+                </p>
+                <p className="text-sm text-destructive/80">
+                  You are too far from the class
+                </p>
               </div>
             </div>
           )}
@@ -206,7 +225,9 @@ export default function GPSValidator({
 
           <div className="flex gap-2">
             <Button
-              onClick={() => onValidate(matched, location.latitude, location.longitude)}
+              onClick={() =>
+                onValidate(matched, location.latitude, location.longitude)
+              }
               disabled={!location}
               className={`flex-1 ${matched ? "bg-secondary hover:bg-secondary/90" : "bg-destructive hover:bg-destructive/90"}`}
             >

@@ -8,13 +8,18 @@ import QRCode from "qrcode";
 const router = Router();
 
 // Create a new class
-export const createClass: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const createClass: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const { name, description } = req.body;
     const teacherId = req.userId;
 
     if (!name) {
-      res.status(400).json({ success: false, message: "Class name is required" });
+      res
+        .status(400)
+        .json({ success: false, message: "Class name is required" });
       return;
     }
 
@@ -39,12 +44,17 @@ export const createClass: RequestHandler = async (req: AuthenticatedRequest, res
 };
 
 // Get all classes for a teacher
-export const getTeacherClasses: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const getTeacherClasses: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const teacherId = req.userId;
 
-    const classes = await Class.find({ teacherId })
-      .populate("students", "firstName lastName username");
+    const classes = await Class.find({ teacherId }).populate(
+      "students",
+      "firstName lastName username",
+    );
 
     res.json({
       success: true,
@@ -57,13 +67,18 @@ export const getTeacherClasses: RequestHandler = async (req: AuthenticatedReques
 };
 
 // Get single class details
-export const getClassDetails: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const getClassDetails: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const { classId } = req.params;
     const teacherId = req.userId;
 
-    const classData = await Class.findOne({ _id: classId, teacherId })
-      .populate("students", "firstName lastName username email");
+    const classData = await Class.findOne({ _id: classId, teacherId }).populate(
+      "students",
+      "firstName lastName username email",
+    );
 
     if (!classData) {
       res.status(404).json({ success: false, message: "Class not found" });
@@ -81,7 +96,10 @@ export const getClassDetails: RequestHandler = async (req: AuthenticatedRequest,
 };
 
 // Add student to class
-export const addStudentToClass: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const addStudentToClass: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const { classId } = req.params;
     const { studentId } = req.body;
@@ -94,7 +112,11 @@ export const addStudentToClass: RequestHandler = async (req: AuthenticatedReques
     }
 
     // Check if student exists
-    const student = await User.findOne({ _id: studentId, role: "student", teacherId });
+    const student = await User.findOne({
+      _id: studentId,
+      role: "student",
+      teacherId,
+    });
     if (!student) {
       res.status(404).json({ success: false, message: "Student not found" });
       return;
@@ -102,7 +124,9 @@ export const addStudentToClass: RequestHandler = async (req: AuthenticatedReques
 
     // Check if student already in class
     if (classData.students.includes(studentId)) {
-      res.status(400).json({ success: false, message: "Student already in class" });
+      res
+        .status(400)
+        .json({ success: false, message: "Student already in class" });
       return;
     }
 
@@ -121,7 +145,10 @@ export const addStudentToClass: RequestHandler = async (req: AuthenticatedReques
 };
 
 // Generate QR code for class
-export const generateQRCode: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const generateQRCode: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const { classId } = req.params;
     const teacherId = req.userId;
@@ -154,12 +181,17 @@ export const generateQRCode: RequestHandler = async (req: AuthenticatedRequest, 
     });
   } catch (error) {
     console.error("Error generating QR code:", error);
-    res.status(500).json({ success: false, message: "Error generating QR code" });
+    res
+      .status(500)
+      .json({ success: false, message: "Error generating QR code" });
   }
 };
 
 // Set GPS coordinates for a class
-export const setGPSCoordinates: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const setGPSCoordinates: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const { classId } = req.params;
     const { latitude, longitude, accuracy } = req.body;
@@ -202,7 +234,10 @@ export const setGPSCoordinates: RequestHandler = async (req: AuthenticatedReques
 };
 
 // Get analytics for a class
-export const getClassAnalytics: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const getClassAnalytics: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const { classId } = req.params;
     const teacherId = req.userId;
@@ -216,7 +251,7 @@ export const getClassAnalytics: RequestHandler = async (req: AuthenticatedReques
     // Get attendance records for the class
     const records = await Attendance.find({ classId }).populate(
       "studentId",
-      "firstName lastName"
+      "firstName lastName",
     );
 
     // Calculate analytics
@@ -259,19 +294,24 @@ export const getClassAnalytics: RequestHandler = async (req: AuthenticatedReques
         totalStudents: classData.students.length,
         studentAnalytics: Object.values(studentAnalytics),
         dailyAnalytics: Object.values(dailyAnalytics).sort(
-          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
         ),
         totalRecords: records.length,
       },
     });
   } catch (error) {
     console.error("Error fetching analytics:", error);
-    res.status(500).json({ success: false, message: "Error fetching analytics" });
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching analytics" });
   }
 };
 
 // Create students for a class
-export const createStudents: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const createStudents: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const { classId } = req.params;
     const { students } = req.body; // Array of {username, email, password, firstName, lastName}
@@ -284,7 +324,9 @@ export const createStudents: RequestHandler = async (req: AuthenticatedRequest, 
     }
 
     if (!Array.isArray(students) || students.length === 0) {
-      res.status(400).json({ success: false, message: "Students array is required" });
+      res
+        .status(400)
+        .json({ success: false, message: "Students array is required" });
       return;
     }
 
@@ -321,7 +363,9 @@ export const createStudents: RequestHandler = async (req: AuthenticatedRequest, 
     });
   } catch (error) {
     console.error("Error creating students:", error);
-    res.status(500).json({ success: false, message: "Error creating students" });
+    res
+      .status(500)
+      .json({ success: false, message: "Error creating students" });
   }
 };
 

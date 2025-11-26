@@ -3,7 +3,13 @@ import { useAuth } from "@/context/AuthContext";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BarChart3, Users, TrendingUp, Calendar, AlertCircle } from "lucide-react";
+import {
+  BarChart3,
+  Users,
+  TrendingUp,
+  Calendar,
+  AlertCircle,
+} from "lucide-react";
 
 interface StudentAnalytics {
   studentId: string;
@@ -70,9 +76,12 @@ export default function TeacherAnalytics() {
   const fetchAnalytics = async (classId: string) => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/teacher/classes/${classId}/analytics`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await fetch(
+        `/api/teacher/classes/${classId}/analytics`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -103,14 +112,22 @@ export default function TeacherAnalytics() {
       <div className="space-y-6">
         {/* Class Selection */}
         <div>
-          <h1 className="text-3xl font-bold text-foreground mb-4">Analytics Dashboard</h1>
+          <h1 className="text-3xl font-bold text-foreground mb-4">
+            Analytics Dashboard
+          </h1>
           <div className="flex gap-2 flex-wrap">
             {classes.map((classItem) => (
               <Button
                 key={classItem._id}
                 onClick={() => setSelectedClass(classItem._id)}
-                variant={selectedClass === classItem._id ? "default" : "outline"}
-                className={selectedClass === classItem._id ? "bg-primary hover:bg-primary/90" : ""}
+                variant={
+                  selectedClass === classItem._id ? "default" : "outline"
+                }
+                className={
+                  selectedClass === classItem._id
+                    ? "bg-primary hover:bg-primary/90"
+                    : ""
+                }
               >
                 {classItem.name}
               </Button>
@@ -131,31 +148,47 @@ export default function TeacherAnalytics() {
             <div className="grid md:grid-cols-4 gap-4">
               <Card className="p-6 bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-sm font-medium text-foreground/70">Total Students</h3>
+                  <h3 className="text-sm font-medium text-foreground/70">
+                    Total Students
+                  </h3>
                   <Users className="w-5 h-5 text-primary" />
                 </div>
-                <p className="text-3xl font-bold text-foreground">{analytics.totalStudents}</p>
+                <p className="text-3xl font-bold text-foreground">
+                  {analytics.totalStudents}
+                </p>
               </Card>
 
               <Card className="p-6 bg-gradient-to-br from-secondary/10 to-secondary/5 border-secondary/20">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-sm font-medium text-foreground/70">Total Records</h3>
+                  <h3 className="text-sm font-medium text-foreground/70">
+                    Total Records
+                  </h3>
                   <Calendar className="w-5 h-5 text-secondary" />
                 </div>
-                <p className="text-3xl font-bold text-foreground">{analytics.totalRecords}</p>
+                <p className="text-3xl font-bold text-foreground">
+                  {analytics.totalRecords}
+                </p>
               </Card>
 
               <Card className="p-6 bg-gradient-to-br from-green-500/10 to-green-500/5 border-green-500/20">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-sm font-medium text-foreground/70">Avg Present %</h3>
+                  <h3 className="text-sm font-medium text-foreground/70">
+                    Avg Present %
+                  </h3>
                   <TrendingUp className="w-5 h-5 text-green-500" />
                 </div>
                 <p className="text-3xl font-bold text-foreground">
                   {analytics.studentAnalytics.length > 0
                     ? Math.round(
-                        (analytics.studentAnalytics.reduce((sum, s) => sum + s.present, 0) /
-                          analytics.studentAnalytics.reduce((sum, s) => sum + s.total, 0)) *
-                          100
+                        (analytics.studentAnalytics.reduce(
+                          (sum, s) => sum + s.present,
+                          0,
+                        ) /
+                          analytics.studentAnalytics.reduce(
+                            (sum, s) => sum + s.total,
+                            0,
+                          )) *
+                          100,
                       )
                     : 0}
                   %
@@ -164,17 +197,23 @@ export default function TeacherAnalytics() {
 
               <Card className="p-6 bg-gradient-to-br from-accent/10 to-accent/5 border-accent/20">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-sm font-medium text-foreground/70">Analytics</h3>
+                  <h3 className="text-sm font-medium text-foreground/70">
+                    Analytics
+                  </h3>
                   <BarChart3 className="w-5 h-5 text-accent" />
                 </div>
-                <p className="text-3xl font-bold text-foreground">{analytics.dailyAnalytics.length}</p>
+                <p className="text-3xl font-bold text-foreground">
+                  {analytics.dailyAnalytics.length}
+                </p>
                 <p className="text-xs text-foreground/60">days tracked</p>
               </Card>
             </div>
 
             {/* Student Attendance Table */}
             <Card className="p-6">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Student Attendance</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">
+                Student Attendance
+              </h2>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead className="border-b border-border/50">
@@ -199,7 +238,10 @@ export default function TeacherAnalytics() {
                   <tbody>
                     {analytics.studentAnalytics.length === 0 ? (
                       <tr>
-                        <td colSpan={5} className="text-center py-8 text-foreground/60">
+                        <td
+                          colSpan={5}
+                          className="text-center py-8 text-foreground/60"
+                        >
                           No attendance records yet
                         </td>
                       </tr>
@@ -207,11 +249,18 @@ export default function TeacherAnalytics() {
                       analytics.studentAnalytics.map((student) => {
                         const percentage =
                           student.total > 0
-                            ? Math.round((student.present / student.total) * 100)
+                            ? Math.round(
+                                (student.present / student.total) * 100,
+                              )
                             : 0;
                         return (
-                          <tr key={student.studentId} className="border-b border-border/30 hover:bg-background/50 transition">
-                            <td className="py-3 px-4 text-foreground">{student.name}</td>
+                          <tr
+                            key={student.studentId}
+                            className="border-b border-border/30 hover:bg-background/50 transition"
+                          >
+                            <td className="py-3 px-4 text-foreground">
+                              {student.name}
+                            </td>
                             <td className="text-center py-3 px-4 text-green-600 font-medium">
                               {student.present}
                             </td>
@@ -229,7 +278,9 @@ export default function TeacherAnalytics() {
                                     style={{ width: `${percentage}%` }}
                                   />
                                 </div>
-                                <span className="font-medium w-10 text-right">{percentage}%</span>
+                                <span className="font-medium w-10 text-right">
+                                  {percentage}%
+                                </span>
                               </div>
                             </td>
                           </tr>
@@ -244,15 +295,20 @@ export default function TeacherAnalytics() {
             {/* Daily Attendance Chart */}
             {analytics.dailyAnalytics.length > 0 && (
               <Card className="p-6">
-                <h2 className="text-2xl font-bold text-foreground mb-4">Daily Attendance Trend</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  Daily Attendance Trend
+                </h2>
                 <div className="space-y-3">
                   {analytics.dailyAnalytics.slice(-7).map((day) => {
                     const total = day.present + day.absent + day.late;
-                    const presentPct = total > 0 ? Math.round((day.present / total) * 100) : 0;
+                    const presentPct =
+                      total > 0 ? Math.round((day.present / total) * 100) : 0;
                     return (
                       <div key={day.date}>
                         <div className="flex justify-between items-center mb-2">
-                          <span className="text-sm font-medium text-foreground">{day.date}</span>
+                          <span className="text-sm font-medium text-foreground">
+                            {day.date}
+                          </span>
                           <span className="text-xs text-foreground/60">
                             {day.present + day.absent + day.late} total
                           </span>

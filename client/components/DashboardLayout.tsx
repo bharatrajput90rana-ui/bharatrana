@@ -19,7 +19,10 @@ interface DashboardLayoutProps {
   title: string;
 }
 
-export default function DashboardLayout({ children, title }: DashboardLayoutProps) {
+export default function DashboardLayout({
+  children,
+  title,
+}: DashboardLayoutProps) {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -30,9 +33,7 @@ export default function DashboardLayout({ children, title }: DashboardLayoutProp
   };
 
   const getNavItems = () => {
-    const baseItems = [
-      { icon: Home, label: "Home", path: "/" },
-    ];
+    const baseItems = [{ icon: Home, label: "Home", path: "/" }];
 
     if (user?.role === "admin") {
       return [
@@ -76,7 +77,11 @@ export default function DashboardLayout({ children, title }: DashboardLayoutProp
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-2 hover:bg-background rounded-lg"
           >
-            {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {sidebarOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
           </button>
         </div>
       </header>
@@ -123,7 +128,9 @@ export default function DashboardLayout({ children, title }: DashboardLayoutProp
               <p className="font-semibold text-foreground">
                 {user?.firstName} {user?.lastName}
               </p>
-              <p className="text-xs text-foreground/60 capitalize">{user?.role}</p>
+              <p className="text-xs text-foreground/60 capitalize">
+                {user?.role}
+              </p>
             </div>
             <Button
               onClick={handleLogout}
@@ -146,7 +153,9 @@ export default function DashboardLayout({ children, title }: DashboardLayoutProp
                   <p className="text-sm font-medium text-foreground">
                     {user?.firstName} {user?.lastName}
                   </p>
-                  <p className="text-xs text-foreground/60 capitalize">{user?.role}</p>
+                  <p className="text-xs text-foreground/60 capitalize">
+                    {user?.role}
+                  </p>
                 </div>
                 <button
                   onClick={handleLogout}

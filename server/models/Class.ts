@@ -51,7 +51,7 @@ const classSchema = new Schema<IClass>(
       default: 50, // 50 meters default accuracy
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 // Index for faster queries

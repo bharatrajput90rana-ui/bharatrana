@@ -74,7 +74,7 @@ const attendanceSchema = new Schema<IAttendance>(
       default: null,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 // Compound index for faster queries

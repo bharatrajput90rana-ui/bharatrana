@@ -3,7 +3,14 @@ import { useAuth } from "@/context/AuthContext";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, XCircle, Clock, TrendingUp, Calendar, AlertCircle } from "lucide-react";
+import {
+  CheckCircle,
+  XCircle,
+  Clock,
+  TrendingUp,
+  Calendar,
+  AlertCircle,
+} from "lucide-react";
 
 interface AttendanceRecord {
   _id: string;
@@ -138,21 +145,34 @@ export default function StudentRecords() {
           <div className="grid md:grid-cols-4 gap-4">
             <Card className="p-6 bg-gradient-to-br from-green-500/10 to-green-500/5 border-green-500/20">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-medium text-foreground/70">Present</h3>
+                <h3 className="text-sm font-medium text-foreground/70">
+                  Present
+                </h3>
                 <CheckCircle className="w-5 h-5 text-green-500" />
               </div>
-              <p className="text-3xl font-bold text-foreground">{stats.present}</p>
-              <p className="text-xs text-foreground/60 mt-1">out of {stats.total}</p>
+              <p className="text-3xl font-bold text-foreground">
+                {stats.present}
+              </p>
+              <p className="text-xs text-foreground/60 mt-1">
+                out of {stats.total}
+              </p>
             </Card>
 
             <Card className="p-6 bg-gradient-to-br from-destructive/10 to-destructive/5 border-destructive/20">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-medium text-foreground/70">Absent</h3>
+                <h3 className="text-sm font-medium text-foreground/70">
+                  Absent
+                </h3>
                 <XCircle className="w-5 h-5 text-destructive" />
               </div>
-              <p className="text-3xl font-bold text-foreground">{stats.absent}</p>
+              <p className="text-3xl font-bold text-foreground">
+                {stats.absent}
+              </p>
               <p className="text-xs text-foreground/60 mt-1">
-                {stats.total > 0 ? Math.round((stats.absent / stats.total) * 100) : 0}%
+                {stats.total > 0
+                  ? Math.round((stats.absent / stats.total) * 100)
+                  : 0}
+                %
               </p>
             </Card>
 
@@ -163,16 +183,23 @@ export default function StudentRecords() {
               </div>
               <p className="text-3xl font-bold text-foreground">{stats.late}</p>
               <p className="text-xs text-foreground/60 mt-1">
-                {stats.total > 0 ? Math.round((stats.late / stats.total) * 100) : 0}%
+                {stats.total > 0
+                  ? Math.round((stats.late / stats.total) * 100)
+                  : 0}
+                %
               </p>
             </Card>
 
             <Card className="p-6 bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-medium text-foreground/70">Attendance %</h3>
+                <h3 className="text-sm font-medium text-foreground/70">
+                  Attendance %
+                </h3>
                 <TrendingUp className="w-5 h-5 text-primary" />
               </div>
-              <p className="text-3xl font-bold text-foreground">{stats.presentPercentage}%</p>
+              <p className="text-3xl font-bold text-foreground">
+                {stats.presentPercentage}%
+              </p>
               <p className="text-xs text-foreground/60 mt-1">overall</p>
             </Card>
           </div>
@@ -180,12 +207,16 @@ export default function StudentRecords() {
 
         {/* Class Filter */}
         <div>
-          <p className="text-sm font-medium text-foreground/70 mb-2">Filter by Class</p>
+          <p className="text-sm font-medium text-foreground/70 mb-2">
+            Filter by Class
+          </p>
           <div className="flex gap-2 flex-wrap">
             <Button
               onClick={() => setFilterClass("")}
               variant={filterClass === "" ? "default" : "outline"}
-              className={filterClass === "" ? "bg-primary hover:bg-primary/90" : ""}
+              className={
+                filterClass === "" ? "bg-primary hover:bg-primary/90" : ""
+              }
               size="sm"
             >
               All Classes
@@ -195,7 +226,9 @@ export default function StudentRecords() {
                 key={c._id}
                 onClick={() => setFilterClass(c._id)}
                 variant={filterClass === c._id ? "default" : "outline"}
-                className={filterClass === c._id ? "bg-primary hover:bg-primary/90" : ""}
+                className={
+                  filterClass === c._id ? "bg-primary hover:bg-primary/90" : ""
+                }
                 size="sm"
               >
                 {c.name}
@@ -213,15 +246,22 @@ export default function StudentRecords() {
             </h2>
             <div className="space-y-3">
               {weeklyStats.map((day, idx) => (
-                <div key={idx} className="flex items-center justify-between p-4 bg-background rounded-lg hover:bg-background/80 transition">
+                <div
+                  key={idx}
+                  className="flex items-center justify-between p-4 bg-background rounded-lg hover:bg-background/80 transition"
+                >
                   <div className="flex items-center gap-3">
                     {getStatusIcon(day.status)}
                     <div>
                       <p className="font-medium text-foreground">{day.date}</p>
-                      <p className="text-xs text-foreground/60">{day.className}</p>
+                      <p className="text-xs text-foreground/60">
+                        {day.className}
+                      </p>
                     </div>
                   </div>
-                  <span className={`px-3 py-1 rounded-full text-sm font-medium capitalize ${getStatusColor(day.status)}`}>
+                  <span
+                    className={`px-3 py-1 rounded-full text-sm font-medium capitalize ${getStatusColor(day.status)}`}
+                  >
                     {day.status}
                   </span>
                 </div>
@@ -232,7 +272,9 @@ export default function StudentRecords() {
 
         {/* Full Attendance Records */}
         <Card className="p-6">
-          <h2 className="text-2xl font-bold text-foreground mb-4">Detailed Records</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-4">
+            Detailed Records
+          </h2>
           <div className="space-y-2">
             {records.length === 0 ? (
               <div className="text-center py-8">
@@ -248,7 +290,9 @@ export default function StudentRecords() {
                   <div className="flex items-center gap-4">
                     {getStatusIcon(record.status)}
                     <div>
-                      <p className="font-medium text-foreground">{record.classId.name}</p>
+                      <p className="font-medium text-foreground">
+                        {record.classId.name}
+                      </p>
                       <p className="text-sm text-foreground/60">
                         {new Date(record.date).toLocaleDateString("en-US", {
                           weekday: "short",
@@ -260,7 +304,9 @@ export default function StudentRecords() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="font-medium text-foreground capitalize">{record.status}</p>
+                    <p className="font-medium text-foreground capitalize">
+                      {record.status}
+                    </p>
                     <div className="text-xs text-foreground/60 space-y-1">
                       <p>QR: {record.qrScanned ? "✓" : "✗"}</p>
                       <p>GPS: {record.gpsMasched ? "✓" : "✗"}</p>

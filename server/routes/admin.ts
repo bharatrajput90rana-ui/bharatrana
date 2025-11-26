@@ -6,7 +6,10 @@ import { AuthenticatedRequest } from "../middleware/auth";
 const router = Router();
 
 // Get all teachers
-export const getAllTeachers: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const getAllTeachers: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const teachers = await User.find({ role: "teacher" }).select("-password");
     res.json({
@@ -15,25 +18,34 @@ export const getAllTeachers: RequestHandler = async (req: AuthenticatedRequest, 
     });
   } catch (error) {
     console.error("Error fetching teachers:", error);
-    res.status(500).json({ success: false, message: "Error fetching teachers" });
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching teachers" });
   }
 };
 
 // Add new teacher (admin only)
-export const addTeacher: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const addTeacher: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const { username, email, password, firstName, lastName } = req.body;
 
     // Validation
     if (!username || !email || !password || !firstName || !lastName) {
-      res.status(400).json({ success: false, message: "All fields are required" });
+      res
+        .status(400)
+        .json({ success: false, message: "All fields are required" });
       return;
     }
 
     // Check if user exists
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
     if (existingUser) {
-      res.status(400).json({ success: false, message: "Username or email already exists" });
+      res
+        .status(400)
+        .json({ success: false, message: "Username or email already exists" });
       return;
     }
 
@@ -61,7 +73,10 @@ export const addTeacher: RequestHandler = async (req: AuthenticatedRequest, res)
 };
 
 // Get attendance reports for a teacher
-export const getTeacherReport: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const getTeacherReport: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const { teacherId } = req.params;
 
@@ -85,7 +100,10 @@ export const getTeacherReport: RequestHandler = async (req: AuthenticatedRequest
           present: presentCount,
           absent: absentCount,
           late: lateCount,
-          presentPercentage: totalRecords > 0 ? ((presentCount / totalRecords) * 100).toFixed(2) : 0,
+          presentPercentage:
+            totalRecords > 0
+              ? ((presentCount / totalRecords) * 100).toFixed(2)
+              : 0,
         },
       },
     });
@@ -96,7 +114,10 @@ export const getTeacherReport: RequestHandler = async (req: AuthenticatedRequest
 };
 
 // Get all attendance records (admin overview)
-export const getAllAttendanceRecords: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const getAllAttendanceRecords: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const records = await Attendance.find()
       .populate("studentId", "firstName lastName username")
@@ -116,7 +137,10 @@ export const getAllAttendanceRecords: RequestHandler = async (req: Authenticated
 };
 
 // Delete teacher
-export const deleteTeacher: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const deleteTeacher: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const { teacherId } = req.params;
 

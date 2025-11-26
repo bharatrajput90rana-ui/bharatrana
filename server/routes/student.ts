@@ -8,13 +8,16 @@ import { AuthenticatedRequest } from "../middleware/auth";
 const router = Router();
 
 // Get student's classes
-export const getStudentClasses: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const getStudentClasses: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const studentId = req.userId;
 
     const classes = await Class.find({ students: studentId }).populate(
       "teacherId",
-      "firstName lastName username"
+      "firstName lastName username",
     );
 
     res.json({
@@ -28,7 +31,10 @@ export const getStudentClasses: RequestHandler = async (req: AuthenticatedReques
 };
 
 // Get single class details for student
-export const getClassDetailsForStudent: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const getClassDetailsForStudent: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const { classId } = req.params;
     const studentId = req.userId;
@@ -54,7 +60,10 @@ export const getClassDetailsForStudent: RequestHandler = async (req: Authenticat
 };
 
 // Upload face data (profile photo + embeddings)
-export const uploadFaceData: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const uploadFaceData: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const { profilePhoto, faceEmbedding, descriptors } = req.body;
     const studentId = req.userId;
@@ -97,12 +106,17 @@ export const uploadFaceData: RequestHandler = async (req: AuthenticatedRequest, 
     });
   } catch (error) {
     console.error("Error uploading face data:", error);
-    res.status(500).json({ success: false, message: "Error uploading face data" });
+    res
+      .status(500)
+      .json({ success: false, message: "Error uploading face data" });
   }
 };
 
 // Get student's face data
-export const getFaceData: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const getFaceData: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const studentId = req.userId;
 
@@ -124,12 +138,17 @@ export const getFaceData: RequestHandler = async (req: AuthenticatedRequest, res
     });
   } catch (error) {
     console.error("Error fetching face data:", error);
-    res.status(500).json({ success: false, message: "Error fetching face data" });
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching face data" });
   }
 };
 
 // Get face embedding for comparison (server-side matching)
-export const getFaceEmbedding: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const getFaceEmbedding: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const { studentId } = req.params;
 
@@ -149,16 +168,27 @@ export const getFaceEmbedding: RequestHandler = async (req: AuthenticatedRequest
     });
   } catch (error) {
     console.error("Error fetching face embedding:", error);
-    res.status(500).json({ success: false, message: "Error fetching face embedding" });
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching face embedding" });
   }
 };
 
 // Mark attendance with multi-step validation
-export const markAttendance: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const markAttendance: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const { classId } = req.params;
-    const { qrScanned, gpsMasched, faceMatched, faceConfidence, gpsLatitude, gpsLongitude } =
-      req.body;
+    const {
+      qrScanned,
+      gpsMasched,
+      faceMatched,
+      faceConfidence,
+      gpsLatitude,
+      gpsLongitude,
+    } = req.body;
     const studentId = req.userId;
 
     // Validate class
@@ -183,7 +213,9 @@ export const markAttendance: RequestHandler = async (req: AuthenticatedRequest, 
     });
 
     if (existing && existing.status === "present") {
-      res.status(400).json({ success: false, message: "Attendance already marked today" });
+      res
+        .status(400)
+        .json({ success: false, message: "Attendance already marked today" });
       return;
     }
 
@@ -220,9 +252,13 @@ export const markAttendance: RequestHandler = async (req: AuthenticatedRequest, 
 
     let attendance;
     if (existing) {
-      attendance = await Attendance.findByIdAndUpdate(existing._id, attendanceData, {
-        new: true,
-      });
+      attendance = await Attendance.findByIdAndUpdate(
+        existing._id,
+        attendanceData,
+        {
+          new: true,
+        },
+      );
     } else {
       attendance = new Attendance(attendanceData);
       await attendance.save();
@@ -239,12 +275,17 @@ export const markAttendance: RequestHandler = async (req: AuthenticatedRequest, 
     });
   } catch (error) {
     console.error("Error marking attendance:", error);
-    res.status(500).json({ success: false, message: "Error marking attendance" });
+    res
+      .status(500)
+      .json({ success: false, message: "Error marking attendance" });
   }
 };
 
 // Get student's attendance history
-export const getAttendanceHistory: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const getAttendanceHistory: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const studentId = req.userId;
     const { classId } = req.query;
@@ -274,18 +315,25 @@ export const getAttendanceHistory: RequestHandler = async (req: AuthenticatedReq
           absent: absentCount,
           late: lateCount,
           presentPercentage:
-            totalRecords > 0 ? ((presentCount / totalRecords) * 100).toFixed(2) : 0,
+            totalRecords > 0
+              ? ((presentCount / totalRecords) * 100).toFixed(2)
+              : 0,
         },
       },
     });
   } catch (error) {
     console.error("Error fetching attendance history:", error);
-    res.status(500).json({ success: false, message: "Error fetching attendance history" });
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching attendance history" });
   }
 };
 
 // Get weekly attendance statistics
-export const getWeeklyStats: RequestHandler = async (req: AuthenticatedRequest, res) => {
+export const getWeeklyStats: RequestHandler = async (
+  req: AuthenticatedRequest,
+  res,
+) => {
   try {
     const studentId = req.userId;
     const { classId } = req.query;
@@ -321,7 +369,9 @@ export const getWeeklyStats: RequestHandler = async (req: AuthenticatedRequest, 
     });
   } catch (error) {
     console.error("Error fetching weekly stats:", error);
-    res.status(500).json({ success: false, message: "Error fetching weekly stats" });
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching weekly stats" });
   }
 };
 

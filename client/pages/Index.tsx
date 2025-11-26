@@ -42,16 +42,27 @@ export default function Index() {
             <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
               <QrCode className="w-6 h-6 text-white" />
             </div>
-            <h1 className="text-2xl font-bold text-foreground">AttendanceHub</h1>
+            <h1 className="text-2xl font-bold text-foreground">
+              AttendanceHub
+            </h1>
           </div>
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-foreground/70 hover:text-foreground transition">
+            <a
+              href="#features"
+              className="text-foreground/70 hover:text-foreground transition"
+            >
               Features
             </a>
-            <a href="#roles" className="text-foreground/70 hover:text-foreground transition">
+            <a
+              href="#roles"
+              className="text-foreground/70 hover:text-foreground transition"
+            >
               Roles
             </a>
-            <a href="#technology" className="text-foreground/70 hover:text-foreground transition">
+            <a
+              href="#technology"
+              className="text-foreground/70 hover:text-foreground transition"
+            >
               Technology
             </a>
             <Button onClick={() => navigate("/login")} size="sm">
@@ -74,8 +85,8 @@ export default function Index() {
               Smart Attendance <span className="text-primary">Management</span>
             </h2>
             <p className="text-xl text-foreground/70 mb-8">
-              A comprehensive solution for automated attendance marking using QR codes, GPS
-              validation, and advanced face recognition technology.
+              A comprehensive solution for automated attendance marking using QR
+              codes, GPS validation, and advanced face recognition technology.
             </p>
             <div className="flex gap-4">
               <Button
@@ -100,7 +111,9 @@ export default function Index() {
             </Card>
             <Card className="p-6 bg-gradient-to-br from-secondary/10 to-secondary/5 border-secondary/20">
               <Smile className="w-12 h-12 text-secondary mb-4" />
-              <h3 className="font-semibold text-foreground">Face Recognition</h3>
+              <h3 className="font-semibold text-foreground">
+                Face Recognition
+              </h3>
               <p className="text-sm text-foreground/60 mt-2">
                 Advanced ML-based identity verification
               </p>
@@ -137,8 +150,8 @@ export default function Index() {
               </div>
               <h3 className="text-2xl font-bold text-foreground mb-4">Admin</h3>
               <p className="text-foreground/70 mb-6">
-                Manage teachers, oversee the entire system, and view comprehensive reports across
-                all classes and attendance records.
+                Manage teachers, oversee the entire system, and view
+                comprehensive reports across all classes and attendance records.
               </p>
               <ul className="space-y-2 text-sm text-foreground/60">
                 <li>✓ Create & manage teachers</li>
@@ -153,10 +166,12 @@ export default function Index() {
               <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center mb-6">
                 <Users className="w-6 h-6 text-secondary" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-4">Teacher</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-4">
+                Teacher
+              </h3>
               <p className="text-foreground/70 mb-6">
-                Create classes, manage students, generate QR codes, set GPS coordinates, and
-                monitor attendance analytics.
+                Create classes, manage students, generate QR codes, set GPS
+                coordinates, and monitor attendance analytics.
               </p>
               <ul className="space-y-2 text-sm text-foreground/60">
                 <li>✓ Create classes</li>
@@ -171,10 +186,12 @@ export default function Index() {
               <div className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-6">
                 <Smartphone className="w-6 h-6 text-accent" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-4">Student</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-4">
+                Student
+              </h3>
               <p className="text-foreground/70 mb-6">
-                Mark attendance using QR codes, face recognition, and GPS validation. Track your
-                attendance history and statistics.
+                Mark attendance using QR codes, face recognition, and GPS
+                validation. Track your attendance history and statistics.
               </p>
               <ul className="space-y-2 text-sm text-foreground/60">
                 <li>✓ Scan QR codes</li>
@@ -200,10 +217,12 @@ export default function Index() {
                   <QrCode className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-foreground mb-2">QR Code Integration</h4>
+                  <h4 className="font-bold text-foreground mb-2">
+                    QR Code Integration
+                  </h4>
                   <p className="text-foreground/70">
-                    Teachers generate unique QR codes for each class session for quick student
-                    verification
+                    Teachers generate unique QR codes for each class session for
+                    quick student verification
                   </p>
                 </div>
               </div>
@@ -213,10 +232,12 @@ export default function Index() {
                   <FaceIcon className="w-6 h-6 text-secondary" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-foreground mb-2">AI Face Recognition</h4>
+                  <h4 className="font-bold text-foreground mb-2">
+                    AI Face Recognition
+                  </h4>
                   <p className="text-foreground/70">
-                    Advanced machine learning for accurate facial identification with liveness
-                    detection
+                    Advanced machine learning for accurate facial identification
+                    with liveness detection
                   </p>
                 </div>
               </div>
@@ -226,9 +247,12 @@ export default function Index() {
                   <MapPin className="w-6 h-6 text-accent" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-foreground mb-2">GPS Validation</h4>
+                  <h4 className="font-bold text-foreground mb-2">
+                    GPS Validation
+                  </h4>
                   <p className="text-foreground/70">
-                    Verify student location against teacher-defined GPS coordinates
+                    Verify student location against teacher-defined GPS
+                    coordinates
                   </p>
                 </div>
               </div>
@@ -240,9 +264,12 @@ export default function Index() {
                   <BarChart3 className="w-6 h-6 text-purple-500" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-foreground mb-2">Analytics & Reports</h4>
+                  <h4 className="font-bold text-foreground mb-2">
+                    Analytics & Reports
+                  </h4>
                   <p className="text-foreground/70">
-                    Comprehensive daily and weekly attendance statistics with trend analysis
+                    Comprehensive daily and weekly attendance statistics with
+                    trend analysis
                   </p>
                 </div>
               </div>
@@ -252,7 +279,9 @@ export default function Index() {
                   <Clock className="w-6 h-6 text-blue-500" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-foreground mb-2">Real-time Tracking</h4>
+                  <h4 className="font-bold text-foreground mb-2">
+                    Real-time Tracking
+                  </h4>
                   <p className="text-foreground/70">
                     Live attendance marking and instant notification system
                   </p>
@@ -264,7 +293,9 @@ export default function Index() {
                   <Shield className="w-6 h-6 text-green-500" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-foreground mb-2">Multi-factor Verification</h4>
+                  <h4 className="font-bold text-foreground mb-2">
+                    Multi-factor Verification
+                  </h4>
                   <p className="text-foreground/70">
                     Three-step validation: QR code, GPS, and face recognition
                   </p>
@@ -284,19 +315,27 @@ export default function Index() {
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="p-6 bg-background rounded-lg border border-border/50">
               <h4 className="font-bold text-foreground mb-2">Frontend</h4>
-              <p className="text-foreground/70 text-sm">React 18 + TypeScript + TailwindCSS</p>
+              <p className="text-foreground/70 text-sm">
+                React 18 + TypeScript + TailwindCSS
+              </p>
             </div>
             <div className="p-6 bg-background rounded-lg border border-border/50">
               <h4 className="font-bold text-foreground mb-2">Backend</h4>
-              <p className="text-foreground/70 text-sm">Express.js + MongoDB + JWT</p>
+              <p className="text-foreground/70 text-sm">
+                Express.js + MongoDB + JWT
+              </p>
             </div>
             <div className="p-6 bg-background rounded-lg border border-border/50">
               <h4 className="font-bold text-foreground mb-2">ML/AI</h4>
-              <p className="text-foreground/70 text-sm">face-api.js + TensorFlow.js</p>
+              <p className="text-foreground/70 text-sm">
+                face-api.js + TensorFlow.js
+              </p>
             </div>
             <div className="p-6 bg-background rounded-lg border border-border/50">
               <h4 className="font-bold text-foreground mb-2">Location</h4>
-              <p className="text-foreground/70 text-sm">Geolocation API + GPS</p>
+              <p className="text-foreground/70 text-sm">
+                Geolocation API + GPS
+              </p>
             </div>
           </div>
         </div>
@@ -309,7 +348,8 @@ export default function Index() {
             Ready to Transform Attendance Management?
           </h2>
           <p className="text-xl text-foreground/70 mb-8">
-            Get started with AttendanceHub today and streamline your attendance process
+            Get started with AttendanceHub today and streamline your attendance
+            process
           </p>
           <Button
             size="lg"
@@ -335,7 +375,10 @@ export default function Index() {
               <h4 className="font-bold text-foreground mb-4">Product</h4>
               <ul className="space-y-2 text-sm text-foreground/70">
                 <li>
-                  <a href="#features" className="hover:text-foreground transition">
+                  <a
+                    href="#features"
+                    className="hover:text-foreground transition"
+                  >
                     Features
                   </a>
                 </li>
@@ -345,7 +388,10 @@ export default function Index() {
                   </a>
                 </li>
                 <li>
-                  <a href="#technology" className="hover:text-foreground transition">
+                  <a
+                    href="#technology"
+                    className="hover:text-foreground transition"
+                  >
                     Technology
                   </a>
                 </li>

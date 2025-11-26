@@ -3,6 +3,7 @@
 Complete API reference for the AttendanceHub attendance management system.
 
 ## Base URL
+
 ```
 http://localhost:8080/api
 ```
@@ -22,11 +23,13 @@ Tokens are obtained by logging in and are valid for 7 days.
 ## Authentication Endpoints
 
 ### Register User
+
 Create a new user account.
 
 **Endpoint:** `POST /auth/register`
 
 **Body:**
+
 ```json
 {
   "username": "string",
@@ -40,6 +43,7 @@ Create a new user account.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -57,11 +61,13 @@ Create a new user account.
 ```
 
 ### Login
+
 Authenticate user and get JWT token.
 
 **Endpoint:** `POST /auth/login`
 
 **Body:**
+
 ```json
 {
   "username": "string",
@@ -70,6 +76,7 @@ Authenticate user and get JWT token.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -87,16 +94,19 @@ Authenticate user and get JWT token.
 ```
 
 ### Verify Token
+
 Verify and get current user from token.
 
 **Endpoint:** `GET /auth/verify`
 
 **Headers:**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -119,11 +129,13 @@ Authorization: Bearer <JWT_TOKEN>
 All endpoints require `Authorization` header with admin role token.
 
 ### Get All Teachers
+
 List all teacher accounts.
 
 **Endpoint:** `GET /admin/teachers`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -142,11 +154,13 @@ List all teacher accounts.
 ```
 
 ### Add New Teacher
+
 Create a new teacher account.
 
 **Endpoint:** `POST /admin/teachers`
 
 **Body:**
+
 ```json
 {
   "username": "teacher1",
@@ -158,6 +172,7 @@ Create a new teacher account.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -174,11 +189,13 @@ Create a new teacher account.
 ```
 
 ### Delete Teacher
+
 Remove a teacher account.
 
 **Endpoint:** `DELETE /admin/teachers/:teacherId`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -187,11 +204,13 @@ Remove a teacher account.
 ```
 
 ### Get Teacher Report
+
 View attendance report for a specific teacher.
 
 **Endpoint:** `GET /admin/teachers/:teacherId/report`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -223,11 +242,13 @@ View attendance report for a specific teacher.
 ```
 
 ### Get All Attendance Records
+
 View all attendance records across the system.
 
 **Endpoint:** `GET /admin/attendance`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -261,11 +282,13 @@ View all attendance records across the system.
 All endpoints require `Authorization` header with teacher role token.
 
 ### Create Class
+
 Create a new class.
 
 **Endpoint:** `POST /teacher/classes`
 
 **Body:**
+
 ```json
 {
   "name": "Mathematics 101",
@@ -274,6 +297,7 @@ Create a new class.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -290,11 +314,13 @@ Create a new class.
 ```
 
 ### Get All Classes
+
 List all classes for the teacher.
 
 **Endpoint:** `GET /teacher/classes`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -315,11 +341,13 @@ List all classes for the teacher.
 ```
 
 ### Get Class Details
+
 Get detailed information about a specific class.
 
 **Endpoint:** `GET /teacher/classes/:classId`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -345,11 +373,13 @@ Get detailed information about a specific class.
 ```
 
 ### Add Student to Class
+
 Add an existing student to a class.
 
 **Endpoint:** `POST /teacher/classes/:classId/students`
 
 **Body:**
+
 ```json
 {
   "studentId": "student_id"
@@ -357,6 +387,7 @@ Add an existing student to a class.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -371,11 +402,13 @@ Add an existing student to a class.
 ```
 
 ### Create Multiple Students
+
 Bulk create student accounts and enroll them in a class.
 
 **Endpoint:** `POST /teacher/classes/:classId/create-students`
 
 **Body:**
+
 ```json
 {
   "students": [
@@ -398,6 +431,7 @@ Bulk create student accounts and enroll them in a class.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -414,11 +448,13 @@ Bulk create student accounts and enroll them in a class.
 ```
 
 ### Generate QR Code
+
 Generate a QR code for the class.
 
 **Endpoint:** `POST /teacher/classes/:classId/qrcode`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -431,11 +467,13 @@ Generate a QR code for the class.
 ```
 
 ### Set GPS Coordinates
+
 Set the GPS location for the class.
 
 **Endpoint:** `POST /teacher/classes/:classId/gps`
 
 **Body:**
+
 ```json
 {
   "latitude": 40.7128,
@@ -445,6 +483,7 @@ Set the GPS location for the class.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -459,11 +498,13 @@ Set the GPS location for the class.
 ```
 
 ### Get Class Analytics
+
 View attendance analytics for a class.
 
 **Endpoint:** `GET /teacher/classes/:classId/analytics`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -500,11 +541,13 @@ View attendance analytics for a class.
 All endpoints require `Authorization` header with student role token.
 
 ### Get Enrolled Classes
+
 List all classes the student is enrolled in.
 
 **Endpoint:** `GET /student/classes`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -526,11 +569,13 @@ List all classes the student is enrolled in.
 ```
 
 ### Get Class Details
+
 Get details about a specific class.
 
 **Endpoint:** `GET /student/classes/:classId`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -553,11 +598,13 @@ Get details about a specific class.
 ```
 
 ### Upload Face Data
+
 Upload profile photo and face embedding for biometric authentication.
 
 **Endpoint:** `POST /student/face-data`
 
 **Body:**
+
 ```json
 {
   "profilePhoto": "data:image/jpeg;base64,...",
@@ -567,6 +614,7 @@ Upload profile photo and face embedding for biometric authentication.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -579,11 +627,13 @@ Upload profile photo and face embedding for biometric authentication.
 ```
 
 ### Get Face Data
+
 Retrieve stored face data.
 
 **Endpoint:** `GET /student/face-data`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -596,11 +646,13 @@ Retrieve stored face data.
 ```
 
 ### Get Face Embedding
+
 Get face embedding for comparison (used internally).
 
 **Endpoint:** `GET /student/face-embedding/:studentId`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -612,11 +664,13 @@ Get face embedding for comparison (used internally).
 ```
 
 ### Mark Attendance
+
 Record attendance with validation results.
 
 **Endpoint:** `POST /student/classes/:classId/attendance`
 
 **Body:**
+
 ```json
 {
   "qrScanned": true,
@@ -629,6 +683,7 @@ Record attendance with validation results.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -642,11 +697,13 @@ Record attendance with validation results.
 ```
 
 ### Get Attendance History
+
 Retrieve all attendance records for the student.
 
 **Endpoint:** `GET /student/attendance?classId=classId (optional)`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -677,11 +734,13 @@ Retrieve all attendance records for the student.
 ```
 
 ### Get Weekly Statistics
+
 Get attendance statistics for the last 7 days.
 
 **Endpoint:** `GET /student/stats/weekly?classId=classId (optional)`
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -726,6 +785,7 @@ All error responses follow this format:
 ### Error Examples
 
 **Invalid Credentials:**
+
 ```json
 {
   "success": false,
@@ -734,6 +794,7 @@ All error responses follow this format:
 ```
 
 **Missing Token:**
+
 ```json
 {
   "success": false,
@@ -742,6 +803,7 @@ All error responses follow this format:
 ```
 
 **Access Denied:**
+
 ```json
 {
   "success": false,
@@ -774,6 +836,7 @@ GET /endpoint?page=1&limit=20
 ## Example Requests
 
 ### Login Example
+
 ```bash
 curl -X POST http://localhost:8080/api/auth/login \
   -H "Content-Type: application/json" \
@@ -784,6 +847,7 @@ curl -X POST http://localhost:8080/api/auth/login \
 ```
 
 ### Create Class Example
+
 ```bash
 curl -X POST http://localhost:8080/api/teacher/classes \
   -H "Authorization: Bearer <TOKEN>" \
@@ -795,6 +859,7 @@ curl -X POST http://localhost:8080/api/teacher/classes \
 ```
 
 ### Mark Attendance Example
+
 ```bash
 curl -X POST http://localhost:8080/api/student/classes/<CLASS_ID>/attendance \
   -H "Authorization: Bearer <TOKEN>" \

@@ -10,7 +10,11 @@ export interface AuthenticatedRequest extends Request {
 }
 
 // Middleware to verify JWT token
-export const authMiddleware: RequestHandler = (req: AuthenticatedRequest, res, next) => {
+export const authMiddleware: RequestHandler = (
+  req: AuthenticatedRequest,
+  res,
+  next,
+) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
 

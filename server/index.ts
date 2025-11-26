@@ -4,7 +4,12 @@ import cors from "cors";
 import { connectDB } from "./db";
 import { handleDemo } from "./routes/demo";
 import { handleRegister, handleLogin, handleVerify } from "./routes/auth";
-import { authMiddleware, adminOnly, teacherOnly, studentOnly } from "./middleware/auth";
+import {
+  authMiddleware,
+  adminOnly,
+  teacherOnly,
+  studentOnly,
+} from "./middleware/auth";
 import adminRoutes from "./routes/admin";
 import teacherRoutes from "./routes/teacher";
 import studentRoutes from "./routes/student";

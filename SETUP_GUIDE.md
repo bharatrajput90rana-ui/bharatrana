@@ -45,6 +45,7 @@ pnpm seed
 ```
 
 This creates:
+
 - 1 Admin account
 - 2 Teachers with classes
 - 10 Students with attendance records
@@ -62,20 +63,24 @@ The application will be available at `http://localhost:8080`
 After seeding the database, use these credentials to test each role:
 
 ### Admin Login
+
 - Username: `admin`
 - Password: `admin123`
 
 ### Teacher Login
+
 - Username: `teacher1` or `teacher2`
 - Password: `teacher123`
 
 ### Student Login
+
 - Username: `student1` to `student10`
 - Password: `student123`
 
 ## System Architecture
 
 ### Frontend (React + TypeScript)
+
 - **Framework**: React 18 with React Router 6
 - **Styling**: TailwindCSS 3
 - **UI Components**: Radix UI + shadcn/ui
@@ -85,6 +90,7 @@ After seeding the database, use these credentials to test each role:
 - **GPS**: Browser Geolocation API
 
 ### Backend (Express + MongoDB)
+
 - **Server**: Express 5
 - **Database**: MongoDB with Mongoose
 - **Authentication**: JWT with bcrypt password hashing
@@ -93,12 +99,14 @@ After seeding the database, use these credentials to test each role:
 ### Key Features
 
 #### Admin Dashboard
+
 - Create and manage teachers
 - View system-wide attendance reports
 - Monitor teacher performance
 - Manage all attendance records
 
 #### Teacher Dashboard
+
 - Create multiple classes
 - Add and manage students
 - Generate QR codes for classes
@@ -107,6 +115,7 @@ After seeding the database, use these credentials to test each role:
 - Monitor daily attendance trends
 
 #### Student Dashboard
+
 - View enrolled classes
 - Mark attendance with three-step verification:
   1. **QR Code Scanning** - Verify class session
@@ -118,12 +127,14 @@ After seeding the database, use these credentials to test each role:
 ## Technology Stack
 
 ### Core Technologies
+
 - **Frontend**: React 18, TypeScript, Vite
 - **Backend**: Express.js, MongoDB, Mongoose
 - **Authentication**: JWT + bcryptjs
 - **AI/ML**: face-api.js (TensorFlow.js)
 
 ### Key Libraries
+
 - **UI**: Radix UI, shadcn/ui, TailwindCSS
 - **Icons**: Lucide React
 - **Forms**: React Hook Form, Zod validation
@@ -134,11 +145,13 @@ After seeding the database, use these credentials to test each role:
 ## API Endpoints
 
 ### Authentication
+
 - `POST /api/auth/register` - Register new user
 - `POST /api/auth/login` - Login user
 - `GET /api/auth/verify` - Verify JWT token
 
 ### Admin Routes
+
 - `GET /api/admin/teachers` - Get all teachers
 - `POST /api/admin/teachers` - Add new teacher
 - `DELETE /api/admin/teachers/:teacherId` - Delete teacher
@@ -146,6 +159,7 @@ After seeding the database, use these credentials to test each role:
 - `GET /api/admin/attendance` - Get all attendance records
 
 ### Teacher Routes
+
 - `POST /api/teacher/classes` - Create class
 - `GET /api/teacher/classes` - Get all classes
 - `GET /api/teacher/classes/:classId` - Get class details
@@ -156,6 +170,7 @@ After seeding the database, use these credentials to test each role:
 - `GET /api/teacher/classes/:classId/analytics` - Get class analytics
 
 ### Student Routes
+
 - `GET /api/student/classes` - Get enrolled classes
 - `GET /api/student/classes/:classId` - Get class details
 - `POST /api/student/face-data` - Upload face data
@@ -167,22 +182,26 @@ After seeding the database, use these credentials to test each role:
 ## Database Models
 
 ### User
+
 - username, email, password, role
 - firstName, lastName
 - teacherId (for students)
 
 ### Class
+
 - name, description, teacherId
 - students (array)
 - qrCode, gpsLatitude, gpsLongitude
 
 ### Attendance
+
 - studentId, classId, teacherId, date
 - status (present/absent/late)
 - qrScanned, gpsMasched, faceMatched
 - faceConfidence, gpsLatitude, gpsLongitude
 
 ### FaceData
+
 - userId, profilePhoto
 - faceEmbedding, descriptors
 - livenessScore
@@ -190,17 +209,21 @@ After seeding the database, use these credentials to test each role:
 ## Building for Production
 
 ### Build
+
 ```bash
 pnpm build
 ```
 
 ### Start Production Server
+
 ```bash
 pnpm start
 ```
 
 ### Create Executable Binary
+
 The project supports creating self-contained binaries using `pkg`:
+
 ```bash
 pnpm build
 pkg dist/server/node-build.mjs --targets node18-linux-x64,node18-macos-x64,node18-win-x64
@@ -209,22 +232,26 @@ pkg dist/server/node-build.mjs --targets node18-linux-x64,node18-macos-x64,node1
 ## Troubleshooting
 
 ### MongoDB Connection Issues
+
 - Ensure MongoDB is running locally: `mongosh`
 - Check MONGODB_URI in `.env`
 - Verify database exists: `show dbs` in MongoDB shell
 
 ### Camera Permission Denied
+
 - Check browser permission settings
 - Ensure HTTPS (or localhost for HTTP)
 - Test with different browser if issues persist
 
 ### Face Recognition Not Working
+
 - Requires good lighting
 - Face should be clearly visible
 - Camera resolution should be at least 640x480
 - Models load from face-api.js (TensorFlow.js)
 
 ### JWT Token Expired
+
 - Token validity: 7 days
 - Log in again to get new token
 - Token stored in localStorage
@@ -232,6 +259,7 @@ pkg dist/server/node-build.mjs --targets node18-linux-x64,node18-macos-x64,node1
 ## Development Tips
 
 ### File Structure
+
 ```
 ├── client/                 # React frontend
 │   ├── pages/             # Route components
@@ -249,6 +277,7 @@ pkg dist/server/node-build.mjs --targets node18-linux-x64,node18-macos-x64,node1
 ```
 
 ### Adding New Features
+
 1. Create API routes in `server/routes/`
 2. Define data models in `server/models/`
 3. Create React components in `client/components/`
@@ -258,6 +287,7 @@ pkg dist/server/node-build.mjs --targets node18-linux-x64,node18-macos-x64,node1
 ## Support & Documentation
 
 For more information, check:
+
 - AGENTS.md - Project overview and architecture
 - Individual component files have inline documentation
 - MongoDB documentation: https://docs.mongodb.com
