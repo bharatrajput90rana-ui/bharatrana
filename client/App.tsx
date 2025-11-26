@@ -13,7 +13,9 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import AdminDashboard from "./pages/AdminDashboard";
 import TeacherDashboard from "./pages/TeacherDashboard";
+import TeacherAnalytics from "./pages/TeacherAnalytics";
 import StudentDashboard from "./pages/StudentDashboard";
+import StudentRecords from "./pages/StudentRecords";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
