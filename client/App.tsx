@@ -78,7 +78,7 @@ const App = () => (
               path="/teacher/analytics"
               element={
                 <ProtectedRoute requiredRoles={["teacher"]}>
-                  <div>Teacher Analytics Page (Coming Soon)</div>
+                  <TeacherAnalytics />
                 </ProtectedRoute>
               }
             />
