@@ -6,10 +6,11 @@ const MONGODB_URI =
 export async function connectDB() {
   try {
     await mongoose.connect(MONGODB_URI);
-    console.log("MongoDB connected successfully");
+    console.log("✅ MongoDB connected successfully");
   } catch (error) {
-    console.error("MongoDB connection error:", error);
-    process.exit(1);
+    console.warn("⚠️  MongoDB connection failed. Database features will not work.");
+    console.warn("To start MongoDB, run: mongod");
+    // Don't exit - let the server continue with frontend only
   }
 }
 
