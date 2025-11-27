@@ -229,7 +229,7 @@ export default function Index() {
 
               <div className="flex gap-4">
                 <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <FaceIcon className="w-6 h-6 text-secondary" />
+                  <Smile className="w-6 h-6 text-secondary" />
                 </div>
                 <div>
                   <h4 className="font-bold text-foreground mb-2">
