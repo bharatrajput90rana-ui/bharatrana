@@ -34,6 +34,4 @@ const faceDataSchema = new Schema<IFaceData>(
   { timestamps: true },
 );
 
-faceDataSchema.index({ userId: 1 });
-
 export default mongoose.model<IFaceData>("FaceData", faceDataSchema);
