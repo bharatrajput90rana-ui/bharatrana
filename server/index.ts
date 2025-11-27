@@ -17,12 +17,11 @@ import studentRoutes from "./routes/student";
 export async function createServer() {
   const app = express();
 
-  // Connect to MongoDB
-  try {
-    await connectDB();
-  } catch (error) {
-    console.error("Failed to connect to MongoDB:", error);
-  }
+  // Connect to MongoDB (non-blocking - logs error but continues)
+  connectDB().catch((error) => {
+    console.warn("⚠️  MongoDB connection failed. API endpoints will not work until MongoDB is running.");
+    console.warn("Start MongoDB with: mongod");
+  });
 
   // Middleware
   app.use(cors());
