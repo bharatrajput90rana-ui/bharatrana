@@ -8,7 +8,9 @@ export async function connectDB() {
     await mongoose.connect(MONGODB_URI);
     console.log("✅ MongoDB connected successfully");
   } catch (error) {
-    console.warn("⚠️  MongoDB connection failed. Database features will not work.");
+    console.warn(
+      "⚠️  MongoDB connection failed. Database features will not work.",
+    );
     console.warn("To start MongoDB, run: mongod");
     // Don't exit - let the server continue with frontend only
   }

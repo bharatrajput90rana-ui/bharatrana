@@ -24,7 +24,9 @@ export function createServer() {
       console.log("✅ MongoDB connected successfully");
     })
     .catch((error) => {
-      console.warn("⚠️  MongoDB connection failed. API endpoints will not work until MongoDB is running.");
+      console.warn(
+        "⚠️  MongoDB connection failed. API endpoints will not work until MongoDB is running.",
+      );
       console.warn("To start MongoDB: mongod");
     });
 
