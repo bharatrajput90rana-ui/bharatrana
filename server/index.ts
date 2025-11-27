@@ -14,14 +14,19 @@ import adminRoutes from "./routes/admin";
 import teacherRoutes from "./routes/teacher";
 import studentRoutes from "./routes/student";
 
-export async function createServer() {
+// Synchronous version for Vite dev server
+export function createServer() {
   const app = express();
 
-  // Connect to MongoDB (non-blocking - logs error but continues)
-  connectDB().catch((error) => {
-    console.warn("⚠️  MongoDB connection failed. API endpoints will not work until MongoDB is running.");
-    console.warn("Start MongoDB with: mongod");
-  });
+  // Connect to MongoDB in the background (non-blocking)
+  connectDB()
+    .then(() => {
+      console.log("✅ MongoDB connected successfully");
+    })
+    .catch((error) => {
+      console.warn("⚠️  MongoDB connection failed. API endpoints will not work until MongoDB is running.");
+      console.warn("To start MongoDB: mongod");
+    });
 
   // Middleware
   app.use(cors());
